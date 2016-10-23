@@ -9,11 +9,22 @@ module.exports = function(grunt) {
       },
       build: {
         expand: true,
-        cwd: 'dist',
+        cwd: 'dist/assets',
         src: ['<%= pkg.name %>.js'],
-        dest: 'dist',
+        dest: 'dist/assets',
         ext: '.min.js',
         extDot: 'last'
+      }
+    },
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'dist',
+          src: ['**/*.css', '!**/*.min.css'],
+          dest: 'dist',
+          ext: '.min.css'
+        }]
       }
     },
     concat: {
@@ -33,7 +44,7 @@ module.exports = function(grunt) {
               'build/controllers/**/*.js',
               'build/directives/**/*.js'              
             ],
-            dest: 'dist/<%= pkg.name %>.js'
+            dest: 'dist/assets/<%= pkg.name %>.js'
         }
     },
     ngAnnotate: {
@@ -69,6 +80,27 @@ module.exports = function(grunt) {
         }
       }
     },
+    copy: {
+      'dist': {
+        files: [          
+          { cwd: 'build/css', src: ['**/*.css'], dest: 'dist/assets', expand: true },
+          { cwd: 'src', src: ['scss/**/**.scss'], dest: 'dist/assets', expand: true}
+        ]
+      }
+    },
+    sass: {
+      dist: {
+        options: {
+          style: 'expanded',
+          loadPath: [
+            'node_modules/bootstrap-sass/assets/stylesheets'
+          ]
+        },
+        files: {
+          'build/css/<%= pkg.name %>.css': 'src/scss/app.scss'
+        }
+      }
+    },
     clean: {
       options: { force: true },
       build: ['build', 'dist'],
@@ -89,17 +121,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-angular-templates');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ng-annotate');
   
-  grunt.registerTask('default', ['clean', 'ngAnnotate', 'ngtemplates', 'concat', 'uglify']);
-
-  // clean concat uglify
-
-  // generate css and move to dist
-  // move scss to dist
-  // .min files too
+  grunt.registerTask('default', ['clean', 'sass', 'ngAnnotate', 'ngtemplates', 'concat', 'copy:dist', 'cssmin', 'uglify']);
 
 };
