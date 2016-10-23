@@ -82,7 +82,8 @@ module.exports = function(grunt) {
     },
     copy: {
       'dist': {
-        files: [          
+        files: [
+          { src: ['package.json', 'README.md'], dest: 'dist', expand: true },
           { cwd: 'build/css', src: ['**/*.css'], dest: 'dist/assets', expand: true },
           { cwd: 'src', src: ['scss/**/**.scss'], dest: 'dist/assets', expand: true}
         ]
@@ -114,6 +115,25 @@ module.exports = function(grunt) {
         // run tests once instead of continuously
         singleRun: true
       }
+    },
+    release: {
+      options: {
+        'beforeBump': null,
+        'bump': null,
+        'afterBump': null,
+        'beforeRelease': null,
+        'changelog': null,
+        'add': null,
+        'commit': null,
+        'tag': null,
+        'push': null,
+        'pushTags': null,
+        npm: true,        
+        //npmtag: true, //default: no tag 
+        folder: 'dist', 
+        'github': null,
+        'afterRelease': null
+      }
     }
   });
   
@@ -127,6 +147,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ng-annotate');
+  grunt.loadNpmTasks('grunt-release');
   
   grunt.registerTask('default', ['clean', 'sass', 'ngAnnotate', 'ngtemplates', 'concat', 'copy:dist', 'cssmin', 'uglify']);
 
