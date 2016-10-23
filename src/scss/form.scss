@@ -1,0 +1,15 @@
+
+form.rt-form {
+	margin-bottom: 1em;	
+}
+
+.alert-validation {
+	@include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+	margin-top: 5px;
+	padding: 5px;
+	list-style-type: none;
+}
+
+ul.alert-validation {
+	list-style-type: none;
+}

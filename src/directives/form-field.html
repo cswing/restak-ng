@@ -1,0 +1,7 @@
+<div class="form-group">
+	<label for="{{field.name}}">{{field.label}}</label>
+	<div ng-transclude></div>
+	<ul class="alert alert-validation" role="alert" ng-show="hasFieldError()">
+		<li ng-repeat="item in field.validMessages" ng-show="hasFieldError(item.key)" class="validation-message">{{item.message}}</li>
+	</ul>
+</div>

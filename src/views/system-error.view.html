@@ -1,0 +1,10 @@
+<div>
+	<h1>Ooops! Something really bad happened.</h1>
+
+	<div ng-repeat="err in errors" class="alert alert-danger" role="alert">
+		<strong>{{err.remoteCall.data.messages[0].message}}</strong>
+		<hr>
+		{{err}}
+	</div>
+
+</div>

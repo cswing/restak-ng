@@ -1,0 +1,20 @@
+<div>
+	<form novalidate name="{{formName}}" data-ng-submit="submit(model)" class="rt-form">
+		
+		<ul class="alert alert-validation" role="alert" ng-show="forms[name].topLevel.$invalid">
+			<li ng-repeat="item in formValidationMessages" ng-show="{{item.key}}" class="validation-message">{{item.message}}</li>
+		</ul>
+		<input type="hidden" name="topLevel" ng-model="__ignored"/>
+
+		<div ng-transclude></div>
+			
+		<div class="btn-toolbar" role="toolbar">
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn btn-primary">{{submitLabel}}</button>
+			</div>
+			<div class="btn-group" role="group">
+				<a class="btn btn-secondary" ng-click="onCancel()">Cancel</a>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,31 @@
+<ul class="pagination">
+	<li ng-class="{'disabled': (queryResult.page == 1) }">
+		<a ng-click="navigate({page: queryResult.page - 1})" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span>
+		</a>
+	</li>
+
+	<li ng-class="{'active': (queryResult.page == 1)}">
+		<a ng-click="navigate({page:1})">1</a>
+	</li>
+	
+	<li class="ellipses disabled" ng-show="queryResult.page > 4 "><a>...</a></li>
+
+	<li ng-class="{'active': (queryResult.page == x1), 'ellipses-left': (queryResult.page > 4)}" ng-hide="x1 == -1"><a ng-click="navigate({page:x1})" ng-bind="x1"></a></li>
+	<li ng-class="{'active': (queryResult.page == x2)}" ng-hide="x2 == -1"><a ng-click="navigate({page:x2})" ng-bind="x2"></a></li>
+	<li ng-class="{'active': (queryResult.page == x3)}" ng-hide="x3 == -1"><a ng-click="navigate({page:x3})" ng-bind="x3"></a></li>
+	<li ng-class="{'active': (queryResult.page == x4)}" ng-hide="x4 == -1"><a ng-click="navigate({page:x4})" ng-bind="x4"></a></li>
+	<li ng-class="{'active': (queryResult.page == x5)}" ng-hide="x5 == -1"><a ng-click="navigate({page:x5})" ng-bind="x5"></a></li>
+	
+	<li class="ellipses disabled" ng-show="queryResult.pageCount - queryResult.page > 3 "><a>...</a></li>
+
+	<li ng-show="queryResult.pageCount > 1" ng-class="{'active': (queryResult.page == queryResult.pageCount), 'ellipses-left': (queryResult.pageCount - queryResult.page > 3)}">
+		<a ng-click="navigate({page:queryResult.pageCount})">{{queryResult.pageCount}}</a>
+	</li>
+
+	<li ng-class="{'disabled': (queryResult.page == queryResult.pageCount)}">
+		<a ng-click="navigate({page:queryResult.page + 1})" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+		</a>
+	</li>
+</ul>

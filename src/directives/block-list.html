@@ -1,0 +1,32 @@
+<div class="rt-block-list">	
+	
+	<nav class="navbar navbar-top">
+		<div class="container-fluid">
+			<form name="forms.search" class="navbar-form navbar-search-form navbar-left" role="search" data-ng-submit="search(criteria)">
+				<div class="form-group">
+					<input type="text" name="searchText" class="form-control" data-ng-model="criteria.searchText" placeholder="Search for...">
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>
+
+			<div class="navbar-right">
+				<rt-paging query-result="queryResult" navigate="onPageChange(page)"></rt-paging>
+			</div>
+		</div>
+	</nav>
+
+	<ul class="list-group">
+  		<li class="list-group-item" ng-repeat="item in queryResult.items">
+  			<div ng-include src="itemTemplate"></div>
+  		</li>
+  	</ul>
+
+	<nav class="navbar navbar-bottom">
+		<div class="container-fluid">
+			<div class="navbar-right">
+				<rt-paging query-result="queryResult" navigate="onPageChange(page)"></rt-paging>
+			</div>
+		</div>
+	</nav>
+
+</div>
