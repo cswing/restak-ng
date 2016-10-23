@@ -1,6 +1,6 @@
 {
   "name": "restak-ng",
-  "version": "0.1.0-dev.1",
+  "version": "0.2.0",
   "description": "Angular Support for Restak based applications",
   "main": "index.js",
   "author": "Craig Swing",
