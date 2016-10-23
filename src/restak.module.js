@@ -1,3 +1,3 @@
 'use strict';
 
-ApplicationConfiguration.registerModule('restak');
+angular.module('restak', []);
